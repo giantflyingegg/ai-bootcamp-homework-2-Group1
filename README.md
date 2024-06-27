@@ -1,6 +1,6 @@
 # AI Bootcamp Homework 2 - Group 1
 
-This project is a Next.js application that generates painting descriptions and images based on user input.
+This project was created as homework for the encode club AI bootcamp.  It is a Next.js application leveraging the OpenAI API that generates painting descriptions using user input and preselected styles and then uses these prompts to generate images.
 
 ## Prerequisites
 
