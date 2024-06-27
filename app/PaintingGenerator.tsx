@@ -7,6 +7,7 @@ const themes = ["Renaissance", "Impressionism", "Surrealism", "Abstract", "Pop A
 
 export default function PaintingGenerator() {
   const [theme, setTheme] = useState("");
+  const [userDescription, setUserDescription] = useState("");
   const [description, setDescription] = useState("");
   const [imageUrl, setImageUrl] = useState("");
   const [isGeneratingImage, setIsGeneratingImage] = useState(false);
@@ -18,13 +19,10 @@ export default function PaintingGenerator() {
 
   const {
     messages,
-    input,
-    handleInputChange,
-    handleSubmit,
     isLoading,
     append,
   } = useChat({
-    api: "/api/chat", // You'll need to create this API route
+    api: "/api/chat",
   });
 
   const messagesContainerRef = useRef<HTMLDivElement>(null);
@@ -40,10 +38,11 @@ export default function PaintingGenerator() {
   };
 
   const generateDescription = async () => {
-    if (!theme) return;
+    if (!theme && !userDescription) return;
+    const promptForAI = `Generate a detailed prompt for image generation of a ${theme} style painting ${userDescription ? `with the following elements: ${userDescription}` : ''}.`;
     await append({
       role: "user",
-      content: `Generate a detailed description of a ${theme} style painting.`,
+      content: promptForAI,
     });
   };
 
@@ -90,13 +89,31 @@ export default function PaintingGenerator() {
         </div>
       </div>
 
+      <div className="mb-4">
+        <h2 className="text-xl mb-2">Your Description:</h2>
+        <textarea
+          value={userDescription}
+          onChange={(e) => setUserDescription(e.target.value)}
+          className="w-full p-2 border rounded"
+          rows={3}
+          placeholder="Describe your painting..."
+        />
+      </div>
+
       <button
         onClick={generateDescription}
-        disabled={!theme || isLoading}
+        disabled={(!theme && !userDescription) || isLoading}
         className="bg-green-500 text-white px-4 py-2 rounded mb-4"
       >
         Generate Painting Description
       </button>
+
+      {description && (
+        <div className="mb-4">
+          <h2 className="text-xl mb-2">Generated Description:</h2>
+          <p className="p-2 bg-gray-100 rounded">{description}</p>
+        </div>
+      )}
 
       <div className="border p-4 mb-4 h-64 overflow-y-auto" ref={messagesContainerRef}>
         {messages.map((m) => (
