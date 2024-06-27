@@ -115,14 +115,6 @@ export default function PaintingGenerator() {
         </div>
       )}
 
-      <div className="border p-4 mb-4 h-64 overflow-y-auto" ref={messagesContainerRef}>
-        {messages.map((m) => (
-          <div key={m.id} className={`mb-2 ${m.role === "user" ? "text-green-500" : "text-blue-500"}`}>
-            <strong>{m.role === "user" ? "User: " : "AI: "}</strong>
-            {m.content}
-          </div>
-        ))}
-      </div>
 
       <div className="mb-4">
         <h2 className="text-xl mb-2">Image Generation Parameters:</h2>
