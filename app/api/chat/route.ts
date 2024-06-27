@@ -1,26 +1,28 @@
-import OpenAI from 'openai';
 import { OpenAIStream, StreamingTextResponse } from 'ai';
- 
-// Create an OpenAI API client (that's edge friendly!)
+import OpenAI from 'openai';
+
 const openai = new OpenAI({
   apiKey: process.env.OPENAI_API_KEY,
 });
- 
-// IMPORTANT! Set the runtime to edge
+
 export const runtime = 'edge';
- 
+
 export async function POST(req: Request) {
   const { messages } = await req.json();
- 
-  // Ask OpenAI for a streaming chat completion given the prompt
+
   const response = await openai.chat.completions.create({
-    model: 'gpt-3.5-turbo',
+    model: 'gpt-4',
     stream: true,
-    messages,
+    messages: [
+      {
+        role: 'system',
+        content: 'You are an AI assistant specialized in creating prompts for text to image generators. Provide detailed descriptions of paintings based on the given theme and user prompts, including elements, style, details, and colors. Keep your responses concise and within 200 tokens.',
+      },
+      ...messages,
+    ],
+    max_tokens: 200,  // This limits the response to about 150-200 words
   });
- 
-  // Convert the response into a friendly text-stream
+
   const stream = OpenAIStream(response);
-  // Respond with the stream
   return new StreamingTextResponse(stream);
 }
