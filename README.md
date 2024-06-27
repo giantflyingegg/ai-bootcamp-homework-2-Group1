@@ -1,37 +1,56 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# AI Bootcamp Homework 2 - Group 1
 
-## Getting Started
+This project is a Next.js application that generates painting descriptions and images based on user input.
 
-First, run the development server:
+## Prerequisites
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+Before you begin, ensure you have the following installed on your system:
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+- Node.js (version 14 or later)
+- npm (usually comes with Node.js)
+- Git
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Installation
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+1. Clone the repository:
 
-## Learn More
+`git clone https://github.com/giantflyingegg/ai-bootcamp-homework-2-Group1.git`
+   
+2. Navigate to the project directory:
 
-To learn more about Next.js, take a look at the following resources:
+`cd ai-bootcamp-homework-2-Group1`
+   
+3. Install the dependencies:
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+`npm install`
+   
+## Environment Setup
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+1. Create a `.env.local` file in the root of your project.
 
-## Deploy on Vercel
+2. Add the following environment variables to the `.env.local` file:
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+`OPENAI_API_KEY=your_openai_api_key_here`
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
-# ai-bootcamp-homework-2-Group1
+Replace `your_openai_api_key_here` with your actual OpenAI API key.
+
+## Dependencies
+
+This project uses the following main dependencies:
+
+- Next.js
+- React
+- OpenAI API
+- Vercel AI SDK
+
+These dependencies should be automatically installed when you run `npm install`. If you need to install them manually, you can use the following command:
+
+`npm install next react react-dom openai ai`
+
+## Running the Application
+
+To run the application in development mode:
+
+`npm run dev`
+
+
